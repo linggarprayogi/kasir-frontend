@@ -23,11 +23,14 @@ export const AuthProvider = ({ children }) => {
             });
 
             const data = await response.json();
-            localStorage.setItem("user", JSON.stringify(data));
-            setUser(data);
-            navigate("/admin/dashboard", {
-                replace: true
-            });
+            console.log(data);
+            if(data.status === true) {
+                localStorage.setItem("user", JSON.stringify(data));
+                setUser(data);
+                navigate("/admin/dashboard", {
+                    replace: true
+                });
+            }
         } catch (error) {
             console.error(error);
         }
